@@ -6,11 +6,11 @@ const { setNoteRoutes } = require('./routes/noteRoutes');
 const dotenv = require('dotenv');
 const cors = require('cors')
 dotenv.config();
-// Create Express app
+
 const app = express();
-app.use(express.json());  
+app.use(express.json());
 app.use(cors());
-// Connect to MongoDB
+
 mongoose.connect(process.env.MONGODB_URL, {
 })
   .then(() => {
@@ -21,10 +21,8 @@ mongoose.connect(process.env.MONGODB_URL, {
     process.exit(1);
   });
 
-// Set up routes
 setNoteRoutes(app);
 
-// Start the server
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
